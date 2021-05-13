@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("webpack ".concat("test"))})();
+(()=>{"use strict";var t,e;t=document.getElementById("club-selector"),e=document.getElementById("fallout-activator"),document.addEventListener("click",(function(l){l.target===e?t.style.display="block":l.target!==e&&(t.style.display="none")}))})();

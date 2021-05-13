@@ -1,5 +1,5 @@
 'use strict'
 
-import fn from './modules/test.js';
-
-fn();
+import dropMenu from './modules/falloutMenu';
+// п.2 выпадающее меню
+dropMenu();

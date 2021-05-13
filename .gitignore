@@ -1,0 +1,11 @@
+/node_modules/
+/.vscode/
+/plugins/
+/config/
+webpack.config.js
+webpack.dev.config.js
+webpack.prod.config.js
+package-lock.json
+package.json
+.jshintrc
+.eslintrc

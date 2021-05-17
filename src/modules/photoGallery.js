@@ -1,5 +1,6 @@
 'use strict'
-
+import AddArrow from './addArrow';
+import AddDots from './addDots';
 const photoSlider = () => {
     const gallerySlider = document.querySelector('.gallery-slider'),
         photoSlides = document.querySelectorAll('.photo-slide');
@@ -14,12 +15,12 @@ const photoSlider = () => {
             .gallery-slider {
                 position: relative;
             }
-            .slider-arrow {
+            .gallery-slider .slider-arrow {
                 background: transparent;
                 border: none;
                 cursor: default !important;
             }
-            .slider-arrow span {
+            .gallery-slider .slider-arrow span {
                 cursor: pointer;
             }
             `;
@@ -27,53 +28,37 @@ const photoSlider = () => {
     };
     addClass();
     // добавление dot на страницу
-    const galleryDots = document.createElement('ul');
-    galleryDots.className = 'slider-dots';
-    gallerySlider.append(galleryDots);
-    const addDot = () => {
-
-        let newDot = document.createElement('li');
-        newDot.innerHTML = '<button></button>';
-        newDot.className = 'slider-dot';
-        photoSlides.forEach((item, i) => {
-            item[i] = newDot.cloneNode(true);
-            galleryDots.append(item[i]);
-        });
-        const sliderDot = document.querySelectorAll('.slider-dot');
-        sliderDot[0].classList.add('slick-active');
-    };
-    addDot();
+    const galleryDots = new AddDots({
+        wrap: '.gallery-slider',
+        wrapName: 'slider',
+        slidesName: '.photo-slide',
+    });
+    galleryDots.init();
     // добавление кнопок на страницу
-    const addBnt = () => {
-        const prevBtn = document.createElement('button'),
-            nextBtn = document.createElement('button');
-        prevBtn.className = 'slider-arrow prev';
-        nextBtn.className = 'slider-arrow next';
-        prevBtn.innerHTML = '<span><img src="./images/arrow-left.png"></span>';
-        nextBtn.innerHTML = '<span><img src="./images/arrow-right.png"></span>';
-        gallerySlider.prepend(prevBtn);
-        gallerySlider.append(nextBtn);
-    };
-    addBnt();
+    const galleryBtns = new AddArrow({
+        wrap: '.gallery-slider',
+        wrapName: 'slider',
+        placeName: 'gallery'
+    });
+    galleryBtns.init();
 
     const galleryPrevBtn = document.querySelector('.slider-arrow.prev'),
         galleryNextBtn = document.querySelector('.slider-arrow.next');
 
-    // автопрокрутка слайдов
+    // смена слайдов и dot
     const prevSlide = (elem, index) => {
         elem[index].style.display = 'none';
     };
     const nextSlide = (elem, index) => {
         elem[index].style.display = 'block';
     };
-
     const prevDot = (elem, index, strClass) => {
         elem[index].classList.remove(strClass);
     };
     const nextDot = (elem, index, strClass) => {
         elem[index].classList.add(strClass);
     };
-
+    // автопрокрутка слайдов и dot
     let currentSlide = 0,
         interval;
     const sliderDot = document.querySelectorAll('.slider-dot');
@@ -97,18 +82,13 @@ const photoSlider = () => {
     const stopSlidePlay = () => {
         clearInterval(interval);
     };
-
     // переключение слайдов кнопками и дотами
     gallerySlider.addEventListener('click', (e) => {
-        if (!e.target.parentNode.matches('.slider-arrow, .slider-dot')) {
-            return;
-        }
-
         prevSlide(photoSlides, currentSlide);
         prevDot(sliderDot, currentSlide, 'slick-active');
-        if (e.target.closest('.next')) {
+        if (e.target.closest('.gallery-next')) {
             currentSlide++;
-        } else if (e.target.closest('.prev')) {
+        } else if (e.target.closest('.gallery-prev')) {
             currentSlide--;
         } else if (e.target.closest('.slider-dot')) {
             sliderDot.forEach((elem, index) => {

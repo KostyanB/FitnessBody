@@ -1,4 +1,6 @@
 'use strict'
+
+import calc from './calc';
 const validInput = () => {
     const correctBase = {
         correctName: true,
@@ -65,10 +67,13 @@ const validInput = () => {
         if (e.target.className === 'form-promo') {
             if(e.target.value && !/^тело2021$/gi.test(e.target.value)) {
                 e.target.style.border = '2px solid #fe193f';
+                calc(false);
             } else if (e.target.value && /^тело2021$/gi.test(e.target.value)) {
                 e.target.style.border = '2px solid #19fe52';
+                calc(true);
             } else {
                 e.target.style.border = '1px solid #b7b7b7';
+                calc(false);
             }
         }
     });

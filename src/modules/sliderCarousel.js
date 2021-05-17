@@ -10,8 +10,7 @@ const sliderCarousel = () => {
     }
     const slides = document.querySelectorAll('.services-slide_content');
 
-
-    const servicesBtns = new AddArrow({ //
+    const servicesBtns = new AddArrow({
         wrap: '.services-wrapper',
         wrapName: 'slider',
         placeName: 'services'
@@ -24,16 +23,17 @@ const sliderCarousel = () => {
         const style = document.createElement('style');
         style.textContent = `
         .services-wrapper .slider-arrow {
-            background: transparent;
             border: none;
-            cursor: default !important;
-            position: relative;
-            left: 50%;
+            background: transparent;
+            top: 45%
         }
-        .services-wrapper .slider-arrow span {
-            cursor: pointer;
+        .services-wrapper .slider-arrow.prev {
+            left: 5%
         }
-            `;
+        .services-wrapper .slider-arrow.next {
+            right: 5%
+        }
+        `;
         document.head.appendChild(style);
     };
     addStyleArrow();
@@ -69,14 +69,10 @@ const sliderCarousel = () => {
         .services-wrapper {
             overflow: hidden !important;
             position: relative;
-
         }
         .services-slider {
-            display: flex;
             will-change: transform !important;
             transition: transform 0.5s !important;
-
-
         }
         .services-slide_content {
             flex: 0 0 ${widthSlide}%;
@@ -84,8 +80,6 @@ const sliderCarousel = () => {
         `;
         document.head.appendChild(style);
     };
-
-
 
     const setOptionPosition = () => {
         widthSlide = Math.floor(100 / slidesToShow);
@@ -102,6 +96,7 @@ const sliderCarousel = () => {
 
         const checkResponse = () => {
         const widthWindow = document.documentElement.clientWidth;
+
             if (widthWindow < maxResponse) {
                 for (let i = 0; i < allResponse.length; i++) {
                     if (widthWindow < allResponse[i]) {
@@ -118,8 +113,6 @@ const sliderCarousel = () => {
         window.addEventListener('resize', checkResponse);
     };
     responseInit();
-
-
 
     let position = 0;
     const prevSlider = () => {

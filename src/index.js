@@ -9,6 +9,7 @@ import maskInput from './modules/maskInput';
 import validInput from './modules/validInput';
 import checkInputs from './modules/checkInputs';
 import calc from './modules/calc';
+import burgerMenu from './modules/burgerMenu';
 
 // п.2 выпадающее меню
 dropMenu();
@@ -28,3 +29,5 @@ validInput();
 checkInputs();
 // калькулятор
 calc();
+//
+burgerMenu();

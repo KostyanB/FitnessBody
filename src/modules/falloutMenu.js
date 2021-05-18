@@ -3,19 +3,10 @@
 import animate from './animate';
 const dropMenu = () => {
     const clubSelector = document.getElementById('club-selector'),
-        falloutActivator = document.getElementById('fallout-activator'),
-        stopPosMenu = falloutActivator.getBoundingClientRect().bottom + 15;
+        falloutActivator = document.getElementById('fallout-activator');
 
-    document.addEventListener('click', (e) => {
-        if (e.target === falloutActivator) {
-            clubSelector.style.display = 'block';
-            clubSelector.style.transform = `translateY(-100%)`;
-            menuAnim();
-        } else if (e.target !== falloutActivator) {
-            clubSelector.style.display = 'none';
-        }
-    });
     const menuAnim = () => {
+        const stopPosMenu = falloutActivator.getBoundingClientRect().bottom + 15;
         animate({
             duration: 500,
             timing: (timeFraction) => {
@@ -31,5 +22,15 @@ const dropMenu = () => {
             },
         });
     };
+
+    document.addEventListener('click', (e) => {
+        if (e.target === falloutActivator) {
+            clubSelector.style.display = 'block';
+            clubSelector.style.transform = `translateY(-100%)`;
+            menuAnim();
+        } else if (e.target !== falloutActivator) {
+            clubSelector.style.display = 'none';
+        }
+    });
 };
 export default dropMenu;

@@ -1,13 +1,16 @@
 'use strict'
 
 const burgerMenu = () => {
-    const menuBtn = document.querySelector('.menu-button'),
-        topMenu = document.querySelector('.top-menu'),
+    const topMenu = document.querySelector('.top-menu'),
         posMenuVert = topMenu.getBoundingClientRect().top,
         style = document.createElement('style');
 
-    const setFix = () => {
+
+    const setFixBurger = () => {
         style.textContent = `
+        #club-selector {
+            z-index: 5000;
+        }
         .top-menu {
             position: fixed;
         }
@@ -15,20 +18,24 @@ const burgerMenu = () => {
         document.head.appendChild(style);
     };
 
-    const removeFix = () => {
+    const removeFixBurger = () => {
         style.textContent = `
+        #club-selector {
+            z-index: 5000;
+        }
         .top-menu {
             position: relative;
         }
         `;
         document.head.appendChild(style);
     };
+
     const trackScroll = () => {
         let scroll = window.pageYOffset;
         if (scroll >= posMenuVert) {
-            setFix();
+            setFixBurger();
         } else {
-            removeFix()
+            removeFixBurger();
         }
     };
     window.addEventListener('scroll', trackScroll);

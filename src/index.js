@@ -8,8 +8,9 @@ import sliderCarousel from './modules/sliderCarousel';
 import maskInput from './modules/maskInput';
 import validInput from './modules/validInput';
 import checkInputs from './modules/checkInputs';
-import calc from './modules/calc';
+import calc from './modules/calculator';
 import burgerMenu from './modules/burgerMenu';
+import popupMenu from './modules/popupMenu';
 
 // п.2 выпадающее меню
 dropMenu();
@@ -29,5 +30,7 @@ validInput();
 checkInputs();
 // калькулятор
 calc();
-//
+// скролл бургер-меню
 burgerMenu();
+// poup-menu
+popupMenu();

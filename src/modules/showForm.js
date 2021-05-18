@@ -9,10 +9,10 @@ const showPopupForm = (thanksForm) => {
         callbackForm = document.getElementById('callback_form'),
         formWrapper = document.querySelectorAll('.form-wrapper'),
         closefreeVisitForm = formWrapper[2].childNodes[1].childNodes[1],
-        closeCallbackForm = formWrapper[1].childNodes[1].childNodes[1],
-        thanksForm1 = document.getElementById('thanks'),
-        stopPosPopup = document.documentElement.clientHeight * 0.2;
+        closeCallbackForm = formWrapper[1].childNodes[1].childNodes[1];
+
     const animForm = (wrapper) => {
+        const stopPosPopup = document.documentElement.clientHeight * 0.2;
         animate({
             duration: 300,
             timing: (timeFraction) => {

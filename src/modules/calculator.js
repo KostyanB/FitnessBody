@@ -21,7 +21,10 @@ const calc = (promo = false) => {
     const calculator = (sale) => {
         let tarif = `${targetClub}${targetTime}`;
         basePrice = price[tarif];
-        priceTotal.textContent = Math.round(basePrice); // * sale);
+        if (priceTotal) {
+            priceTotal.textContent = Math.round(basePrice); // * sale);
+        }
+
     };
     calculator();
     /*

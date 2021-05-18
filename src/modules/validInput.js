@@ -1,6 +1,6 @@
 'use strict'
 
-import calc from './calc';
+import calc from './calculator';
 const validInput = () => {
     const correctBase = {
         correctName: true,

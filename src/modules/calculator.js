@@ -1,11 +1,13 @@
 'use strict'
-const calc = (promo = false) => {
+const calc = () => {
     const cardOrder = document.getElementById('card_order'),
-        priceTotal = cardOrder.querySelector('#price-total');
+        priceTotal = cardOrder.querySelector('#price-total'),
+        formPromo = document.querySelector('.form-promo');
 
     let targetClub = 'mozaika',
         targetTime = 1,
-        basePrice = 1999;
+        basePrice = 1999,
+        sale = 1;
 
     const price = {
         'mozaika1': 1999,
@@ -18,38 +20,47 @@ const calc = (promo = false) => {
         'schelkovo12': 24990,
     };
 
-    const calculator = (sale) => {
-        let tarif = `${targetClub}${targetTime}`;
-        basePrice = price[tarif];
+    const calculator = () => {
         if (priceTotal) {
-            priceTotal.textContent = Math.round(basePrice); // * sale);
+            priceTotal.textContent = Math.round(basePrice * sale);
         }
-
     };
     calculator();
-    /*
-    const checkPromo = () => {
-        if (promo) {
-            calculator(0.7);
-        } else {
-            calculator(1);
-        }
+
+    const setTarif = () => {
+        let tarif = `${targetClub}${targetTime}`;
+        basePrice = price[tarif];
+        calculator();
     };
-    checkPromo();
-    */
+    setTarif();
+
     cardOrder.addEventListener('click', (e) => {
         if (e.target.name === 'card-type') {
             if (e.target.value) {
                 targetTime = e.target.value;
-                calculator();
-                //checkPromo();
+                setTarif();
             }
         }
         if (e.target.name === 'club-name') {
             targetClub = e.target.value;
-            calculator();
-            //checkPromo();
+            setTarif();
         }
     });
+
+    const formChange = () => {
+        if (formPromo) {
+            formPromo.addEventListener('change', (e) => {
+                if (e.target.value && /^тело2021$/gi.test(e.target.value)) {
+                    sale = 0.7;
+                    setTarif();
+                } else {
+                    sale = 1;
+                    setTarif();
+                }
+            });
+        }
+    };
+    formChange();
 };
+
 export default calc;

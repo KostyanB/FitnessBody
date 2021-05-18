@@ -1,7 +1,7 @@
 'use strict'
 import AddArrow from './addArrow';
-
 const sliderCarousel = () => {
+
     const servicesSlider = document.querySelector('.services-slider'),
         servicesWrapper = document.querySelector('.services-wrapper'),
         sliderChild = document.querySelector('.services-slider').children;
@@ -136,10 +136,10 @@ const sliderCarousel = () => {
             servicesSlider.style.transform = 'translateX(0%)';
         }
     };
-    servicesWrapper.addEventListener('click', (e) => {
-        if (e.target === prevBtn) {
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.services-prev')) {
             prevSlider();
-        } else if (e.target === nextBtn) {
+        } else if (e.target.closest('.services-next')) {
             nextSlider();
         }
     });

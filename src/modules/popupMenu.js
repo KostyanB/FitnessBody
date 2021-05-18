@@ -3,7 +3,8 @@
 import animate from './animate';
 const popupMenu = () => {
     const popMenu = document.querySelector('.popup-menu'),
-        menuBtn = document.getElementById('menu-button');
+        menuBtn = document.getElementById('menu-button'),
+        menuBlocks = document.querySelectorAll('.menu-block');
 
     const popMenuAnim = () => {
         animate({
@@ -25,7 +26,7 @@ const popupMenu = () => {
     const controlLink = (target) => {
         const posTarget = target.offsetTop - 20;
         animate({
-            duration: 300,
+            duration: 500,
             timing: (timeFraction) => {
                 return timeFraction;
             },
@@ -47,15 +48,15 @@ const popupMenu = () => {
         }
         if (e.target.closest('.popup-links')) {
             popMenu.style.display = 'none';
-            /*
-            const checkLinkArr = e.target.href.split('/')[3].split('#')[0];
-            if (checkLinkArr !== 'mozaika.html' || checkLinkArr !== 'schelkovo.html') {
-                e.preventDefault();
-                const idElem = e.target.href.split('#').substr(1);
+            menuBlocks.forEach(item => {
+               const idElem = e.target.href.split('#')[1];
+               if (item.id === idElem) {
+                   e.preventDefault();
                 const rargetElem = document.getElementById(idElem);
-                controlLink(rargetElem);
-            }
-            */
+                    controlLink(rargetElem);
+                    return;
+               }
+            });
         }
     });
 };

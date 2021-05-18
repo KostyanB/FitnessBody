@@ -13,7 +13,7 @@ const scrollCursor = () => {
             e.preventDefault();
             const docScrollPos = document.documentElement.scrollTop;
             animate({
-                duration: 300,
+                duration: 500,
                 timing: (timeFraction) => {
                     return timeFraction;
                 },

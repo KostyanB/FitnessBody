@@ -31,7 +31,7 @@ const burgerMenu = () => {
     };
 
     const trackScroll = () => {
-        let scroll = window.pageYOffset;
+        const scroll = window.pageYOffset;
         if (scroll >= posMenuVert) {
             setFixBurger();
         } else {

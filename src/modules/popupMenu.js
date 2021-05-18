@@ -1,10 +1,11 @@
 'use strict'
 
 import animate from './animate';
+
 const popupMenu = () => {
     const popMenu = document.querySelector('.popup-menu'),
-        menuBtn = document.getElementById('menu-button'),
-        menuBlocks = document.querySelectorAll('.menu-block');
+        menuBtn = document.getElementById('menu-button');
+    let menuBlocks = document.querySelectorAll('.menu-block');
 
     const popMenuAnim = () => {
         animate({
@@ -23,8 +24,8 @@ const popupMenu = () => {
         });
     };
 
-    const controlLink = (target) => {
-        const posTarget = target.offsetTop - 20;
+    const menuLinkAnim = (target, editPos) => {
+        const posTarget = target.offsetTop - editPos;
         animate({
             duration: 500,
             timing: (timeFraction) => {
@@ -37,7 +38,20 @@ const popupMenu = () => {
         });
     };
 
+    const linkControl = (e, block, editPos) => {
+        block.forEach(item => {
+            const idElem = e.target.href.split('#')[1];
+            if (item.id === idElem) {
+                e.preventDefault();
+             const rargetElem = document.getElementById(idElem);
+                 menuLinkAnim(rargetElem, editPos);
+                 return;
+            }
+         });
+    };
+
     document.addEventListener('click', (e) => {
+        menuBlocks = document.querySelectorAll('.menu-block')
         if (e.target === menuBtn) {
             popMenu.style.display = 'flex';
             popMenu.style.transform = `translateY(-100%)`;
@@ -48,15 +62,10 @@ const popupMenu = () => {
         }
         if (e.target.closest('.popup-links')) {
             popMenu.style.display = 'none';
-            menuBlocks.forEach(item => {
-               const idElem = e.target.href.split('#')[1];
-               if (item.id === idElem) {
-                   e.preventDefault();
-                const rargetElem = document.getElementById(idElem);
-                    controlLink(rargetElem);
-                    return;
-               }
-            });
+            linkControl(e, menuBlocks, 20);
+        }
+        if (e.target.closest('.main-links')) {
+            linkControl(e, menuBlocks, 50);
         }
     });
 };

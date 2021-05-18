@@ -834,8 +834,8 @@ html#schelkovo .advantages .wrapper {
     position: fixed;
     z-index: 5555;
     display: inline;
-    top: 15px;
-    right: 20px;
+    top: 55px;
+    left: 20px;
     cursor: pointer
 }
 
@@ -1385,7 +1385,7 @@ nav.popup-menu .close-menu-btn img {
     bottom: 50px;
     left: 50%;
     margin-left: -65px;
-    z-index: 1000
+    z-index: 900
 }
 
 .slider-dots li {
@@ -2075,7 +2075,7 @@ footer .footer-bottom .right .socials .social-icon:hover a {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1020
+    z-index: 5020
 }
 
 .popup .form-wrapper {
@@ -2085,7 +2085,7 @@ footer .footer-bottom .right .socials .social-icon:hover a {
     left: 0;
     top: 20vh;
     right: 0;
-    z-index: 1200;
+    z-index: 5200;
     width: 380px;
     height: 355px
 }
@@ -2114,7 +2114,7 @@ footer .footer-bottom .right .socials .social-icon:hover a {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    z-index: 1210;
+    z-index: 5210;
     width: 340px;
     height: 315px;
     background-color: #1e1c34;

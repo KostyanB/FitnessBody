@@ -109,19 +109,14 @@ const photoSlider = () => {
     });
 
     // остановка прокрутки при наведении мышки на кнопки и доты
-    gallerySlider.addEventListener('mouseover', (e) => {
+    gallerySlider.addEventListener('mouseenter', (e) => {
         if (e.target.parentNode.classList.contains('slider-arrow') || e.target.parentNode.classList.contains('slider-dot')) {
             stopSlidePlay();
         }
     });
-    galleryPrevBtn.firstChild.addEventListener('mouseleave', (e) => {
-        startSlidePlay();
-    });
-    galleryNextBtn.firstChild.addEventListener('mouseleave', (e) => {
-        startSlidePlay();
-    });
-    gallerySlider.addEventListener('mouseout', (e) => {
-        if (e.target.parentNode.className === 'slider-dot') {
+
+    gallerySlider.addEventListener('mouseleave', (e) => {
+        if (e.target === galleryNextBtn.firstChild || e.target === galleryPrevBtn.firstChild || e.target.parentNode.className === 'slider-dot') {
             startSlidePlay();
         }
     });

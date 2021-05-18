@@ -11,7 +11,7 @@ import checkInputs from './modules/checkInputs';
 import calc from './modules/calculator';
 import burgerMenu from './modules/burgerMenu';
 import popupMenu from './modules/popupMenu';
-import scrollCursor from './modules/scrollCursor'
+import scrollCursor from './modules/scrollCursor';
 
 // п.2 выпадающее меню
 dropMenu();

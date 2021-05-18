@@ -73,6 +73,7 @@ const sliderCarousel = () => {
         .services-slider {
             will-change: transform !important;
             transition: transform 0.5s !important;
+            box-sizing: border-box;
         }
         .services-slide_content {
             flex: 0 0 ${widthSlide}%;
@@ -135,13 +136,12 @@ const sliderCarousel = () => {
             servicesSlider.style.transform = 'translateX(0%)';
         }
     };
-
-    const controlSlider = () => {
-        prevBtn.addEventListener('click', prevSlider);
-        nextBtn.addEventListener('click', nextSlider);
-    };
-    controlSlider();
-
-
+    servicesWrapper.addEventListener('click', (e) => {
+        if (e.target === prevBtn) {
+            prevSlider();
+        } else if (e.target === nextBtn) {
+            nextSlider();
+        }
+    });
 };
 export default sliderCarousel;

@@ -114,14 +114,14 @@ const photoSlider = () => {
             stopSlidePlay();
         }
     });
-    galleryPrevBtn.firstChild.addEventListener('mouseleave', (e) => {
-        startSlidePlay();
-    });
-    galleryNextBtn.firstChild.addEventListener('mouseleave', (e) => {
-        startSlidePlay();
-    });
     gallerySlider.addEventListener('mouseout', (e) => {
         if (e.target.parentNode.className === 'slider-dot') {
+            startSlidePlay();
+        }
+        if (e.target === galleryNextBtn.firstChild && e.relatedTarget === galleryNextBtn) {
+            startSlidePlay();
+        }
+        if (e.target === galleryPrevBtn.firstChild && e.relatedTarget === galleryPrevBtn) {
             startSlidePlay();
         }
     });

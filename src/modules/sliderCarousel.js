@@ -9,6 +9,7 @@ const sliderCarousel = () => {
         sliderChild[i].classList.add('services-slide_content');
     }
     const slides = document.querySelectorAll('.services-slide_content');
+
     let slidesToShow = 6;
     let widthSlide = Math.floor(100 / slidesToShow);
     let maxPosition;
@@ -23,25 +24,34 @@ const sliderCarousel = () => {
         .services-wrapper {
             overflow: hidden !important;
             position: relative;
+            padding-left: 0;
+            padding-right: 0;
         }
         .services-slider {
             will-change: transform !important;
             transition: transform 0.5s !important;
             box-sizing: border-box;
+            padding-left: 0;
+            padding-right: 0;
+
         }
         .services-slide_content {
             flex: 0 0 ${widthSlide}%;
+            margin-left: 0 !important;;
+            margin-right: 0 !important;;
+            padding-left: 6px;
+            padding-right: 6px;
         }
         .services-wrapper .slider-arrow {
             border: none;
             background: transparent;
-            top: 45%
+            top: 41%
         }
         .services-wrapper .slider-arrow.prev {
-            left: 5%
+            left: 0;
         }
         .services-wrapper .slider-arrow.next {
-            right: 5%
+            right: 0;
         }
         `;
         document.head.appendChild(style);
@@ -80,9 +90,13 @@ const sliderCarousel = () => {
     ];
 
     const setOptionPosition = () => {
-        widthSlide = Math.floor(100 / slidesToShow);
+        widthSlide = 100 / slidesToShow;
         maxPosition = slides.length - slidesToShow;
-        slides.forEach(item => item.style.flex = `0 0 ${widthSlide}%`);
+        const sliderWidth = servicesSlider.clientWidth / slidesToShow;
+        slides.forEach(item => {
+            item.style.flex = `0 0 ${widthSlide}%`;
+            item.style.width = `${sliderWidth}px`;
+        });
         servicesSlider.style.transform = 'translateX(0%)';
     };
     setOptionPosition();

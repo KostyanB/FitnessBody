@@ -1392,17 +1392,18 @@ nav.popup-menu .close-menu-btn img {
     float: left
 }
 
-.slider-dots li button {
+.slider-dots li {
     width: 22px;
     height: 7px;
     background-color: #fff;
     border: none;
     border-radius: 2px;
     color: transparent;
-    margin-right: 5px
+    margin-right: 5px;
+    cursor: pointer;
 }
 
-.slider-dots li.slick-active button {
+.slider-dots li.slick-active {
     background-color: #ffd11a
 }
 

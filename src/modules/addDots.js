@@ -18,7 +18,6 @@ class AddDots {
     addDot() {
         const slides = document.querySelectorAll(this.slidesName);
         let newDot = document.createElement('li');
-        newDot.innerHTML = '<button></button>';
         newDot.className = `${this.wrapName}-dot`;
         slides.forEach((item, i) => {
             item[i] = newDot.cloneNode(true);

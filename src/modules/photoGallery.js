@@ -88,15 +88,16 @@ const photoSlider = () => {
     };
     // переключение слайдов кнопками и дотами
     gallerySlider.addEventListener('click', (e) => {
+        let target = e.target;
         prevSlide(photoSlides, currentSlide);
         prevDot(sliderDot, currentSlide, 'slick-active');
-        if (e.target.closest('.gallery-next')) {
+        if (target.closest('.gallery-next')) {
             currentSlide++;
-        } else if (e.target.closest('.gallery-prev')) {
+        } else if (target.closest('.gallery-prev')) {
             currentSlide--;
-        } else if (e.target.closest('.slider-dot')) {
+        } else if (target.matches('.slider-dot')) {
             sliderDot.forEach((elem, index) => {
-                if (elem === e.target.parentNode) {
+                if (elem === target) {
                     currentSlide = index;
                 }
             });
@@ -114,12 +115,12 @@ const photoSlider = () => {
 
     // остановка прокрутки при наведении мышки на кнопки и доты
     gallerySlider.addEventListener('mouseover', (e) => {
-        if (e.target.parentNode.classList.contains('slider-arrow') || e.target.parentNode.classList.contains('slider-dot')) {
+        if (e.target.parentNode.classList.contains('slider-arrow') || e.target.matches('.slider-dot')) { //parentNode.classList.contains('slider-dot'))
             stopSlidePlay();
         }
     });
     gallerySlider.addEventListener('mouseout', (e) => {
-        if (e.target.parentNode.className === 'slider-dot') {
+        if (e.target.matches('.slider-dot')) {
             startSlidePlay();
         }
         if (e.target === galleryNextBtn.firstChild && e.relatedTarget === galleryNextBtn) {

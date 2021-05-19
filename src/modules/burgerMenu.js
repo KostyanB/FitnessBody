@@ -2,40 +2,14 @@
 
 const burgerMenu = () => {
     const topMenu = document.querySelector('.top-menu'),
-        posMenuVert = topMenu.getBoundingClientRect().top,
-        style = document.createElement('style');
-
-
-    const setFixBurger = () => {
-        style.textContent = `
-        #club-selector {
-            z-index: 5000;
-        }
-        .top-menu {
-            position: fixed;
-        }
-        `;
-        document.head.appendChild(style);
-    };
-
-    const removeFixBurger = () => {
-        style.textContent = `
-        #club-selector {
-            z-index: 5000;
-        }
-        .top-menu {
-            position: relative;
-        }
-        `;
-        document.head.appendChild(style);
-    };
+        posMenuVert = topMenu.getBoundingClientRect().top;
 
     const trackScroll = () => {
         const scroll = window.pageYOffset;
         if (scroll >= posMenuVert) {
-            setFixBurger();
+            topMenu.style.position = 'fixed';
         } else {
-            removeFixBurger();
+            topMenu.style.position = 'relative';
         }
     };
     window.addEventListener('scroll', trackScroll);

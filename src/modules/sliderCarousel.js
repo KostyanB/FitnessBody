@@ -9,19 +9,29 @@ const sliderCarousel = () => {
         sliderChild[i].classList.add('services-slide_content');
     }
     const slides = document.querySelectorAll('.services-slide_content');
-
-    const servicesBtns = new AddArrow({
-        wrap: '.services-wrapper',
-        wrapName: 'slider',
-        placeName: 'services'
-    });
-    servicesBtns.init();
-    const prevBtn = document.querySelector('.services-prev');
-    const nextBtn = document.querySelector('.services-next');
+    let slidesToShow = 6;
+    let widthSlide = Math.floor(100 / slidesToShow);
+    let maxPosition;
     // установка css
-    const addStyleArrow = () => {
-        const style = document.createElement('style');
+    const addStyle = () => {
+        let style = document.getElementById('services-style');
+        if (!style) {
+            style = document.createElement('style');
+            style.id = 'services-style';
+        }
         style.textContent = `
+        .services-wrapper {
+            overflow: hidden !important;
+            position: relative;
+        }
+        .services-slider {
+            will-change: transform !important;
+            transition: transform 0.5s !important;
+            box-sizing: border-box;
+        }
+        .services-slide_content {
+            flex: 0 0 ${widthSlide}%;
+        }
         .services-wrapper .slider-arrow {
             border: none;
             background: transparent;
@@ -36,7 +46,17 @@ const sliderCarousel = () => {
         `;
         document.head.appendChild(style);
     };
-    addStyleArrow();
+    addStyle();
+
+    const servicesBtns = new AddArrow({
+        wrap: '.services-wrapper',
+        wrapName: 'slider',
+        placeName: 'services'
+    });
+    servicesBtns.init();
+    const prevBtn = document.querySelector('.services-prev');
+    const nextBtn = document.querySelector('.services-next');
+
     const responsive = [{
             breakpoint: 1400,
             slidesToShow: 5,
@@ -58,35 +78,12 @@ const sliderCarousel = () => {
             slidesToShow: 1,
         }
     ];
-    let slidesToShow = 6;
-    let widthSlide = Math.floor(100 / slidesToShow);
-    let maxPosition;
-
-    const addStyle = () => {
-        const style = document.createElement('style');
-        style.textContent = `
-
-        .services-wrapper {
-            overflow: hidden !important;
-            position: relative;
-        }
-        .services-slider {
-            will-change: transform !important;
-            transition: transform 0.5s !important;
-            box-sizing: border-box;
-        }
-        .services-slide_content {
-            flex: 0 0 ${widthSlide}%;
-        }
-        `;
-        document.head.appendChild(style);
-    };
 
     const setOptionPosition = () => {
         widthSlide = Math.floor(100 / slidesToShow);
         maxPosition = slides.length - slidesToShow;
-
-        addStyle();
+        slides.forEach(item => item.style.flex = `0 0 ${widthSlide}%`);
+        servicesSlider.style.transform = 'translateX(0%)';
     };
     setOptionPosition();
     // количество слайдов от разрешения экрана
@@ -127,7 +124,6 @@ const sliderCarousel = () => {
     };
 
     const nextSlider = () => {
-
         if (position < maxPosition) {
             ++position;
             servicesSlider.style.transform = `translateX(-${position * widthSlide}%)`;

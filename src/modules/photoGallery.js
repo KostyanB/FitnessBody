@@ -10,7 +10,11 @@ const photoSlider = () => {
     }
     // установка css
     const addClass = () => {
-        const style = document.createElement('style');
+        let style = document.getElementById('gallery-style');
+        if (!style) {
+            style = document.createElement('style');
+            style.id = 'gallery-style';
+        }
         style.textContent = `
             .gallery-slider {
                 position: relative;

@@ -1,6 +1,7 @@
 'use strict'
-//import showResultSend from './showSendResult';
+import calc from './calculator';
 import showPopupForm from './showForm';
+
 const sendForm = (form, inputs, statusMessage) => {
     const errorMessage = 'Произошла ошибка отправки. Попробуйте еще раз позже',
         loadMessage = 'Отправка...',
@@ -12,20 +13,24 @@ const sendForm = (form, inputs, statusMessage) => {
     //создание базы данных
     const formData = new FormData(form);
     let body = {};
+
     formData.forEach((item, key) => {
         body[key] = item;
     });
-
     // clear inputs
     const clearInputs = () => {
         inputs.forEach(item => {
-            item.value = '';
-            item.removeAttribute('style');
+            if (item.className === 'form-name' || item.className === 'form-phone' || item.className === 'form-promo') {
+                item.value = '';
+                item.removeAttribute('style');
+            }
+            if (item.className === 'form-promo') {
+                calc();
+            }
         });
         const checkBox = form.querySelector('[type="checkbox"]');
         if (checkBox) {
             checkBox.checked = "false";
-
         }
      };
     const clearMessage = () => statusMessage.textContent = '';

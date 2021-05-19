@@ -31,9 +31,11 @@ const validInput = () => {
         if (e.target.className === 'form-name') {
             e.target.value = e.target.value.replace(/\s+/g, ' ');
             let nameData = e.target.value.trim().split(' '),
-                userName = '';
+                userName = '', baseName = '';
             nameData.forEach(item => {
-                userName += `${item.charAt(0).toUpperCase() + item.substring(1)} `;
+                baseName += `${item.charAt(0).toUpperCase() + item.substring(1)} `;
+                userName = baseName.trim();
+
             });
             if (userName === ' ') { //если только пробелы - value ''
                 e.target.value = '';
@@ -62,16 +64,7 @@ const validInput = () => {
                 showError(false);
             }
         }
-        // проверка промокода
-        if (e.target.className === 'form-promo') {
-            if(e.target.value && !/^тело2021$/gi.test(e.target.value)) {
-                e.target.style.border = '2px solid #fe193f';
-            } else if (e.target.value && /^тело2021$/gi.test(e.target.value)) {
-                e.target.style.border = '2px solid #19fe52';
-            } else {
-                e.target.style.border = '1px solid #b7b7b7';
-            }
-        }
+
     });
 };
 export default validInput;

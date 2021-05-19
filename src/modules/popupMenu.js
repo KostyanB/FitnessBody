@@ -9,7 +9,7 @@ const popupMenu = () => {
 
     const popMenuAnim = () => {
         animate({
-            duration: 500,
+            duration: 300,
             timing: (timeFraction) => {
                 return timeFraction;
             },

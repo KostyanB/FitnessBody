@@ -21,8 +21,9 @@ const scrollCursor = () => {
     };
 
     window.addEventListener('scroll', () => {
-        const firstSectionPos = firstSection.getBoundingClientRect().bottom;
-        if (firstSectionPos < 50) {
+        const firstSectionPos = firstSection.getBoundingClientRect().bottom,
+            topOffset = document.querySelector('.top-menu').offsetHeight;
+        if (firstSectionPos < topOffset) {
             wrapToTop.removeAttribute('hidden');
             goTop();
         } else {

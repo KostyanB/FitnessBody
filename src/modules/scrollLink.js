@@ -4,22 +4,27 @@ const scrollToLink = () => {
     const popMenu = document.querySelector('.popup-menu'),
         topMenu = document.querySelector('.main-links');
 
-    const linkGo = (menu, e) => {
-        const links = menu.querySelectorAll('a[href^="#"]');
+    // скролл на секцию
+    const goLink = (href) => {
+        const topOffset = document.querySelector('.top-menu').offsetHeight,
+            scrollTarget = document.getElementById(href),
+            elementPosition = scrollTarget.getBoundingClientRect().top,
+            offsetPosition = elementPosition - topOffset;
+        window.scrollBy({
+            top: offsetPosition, // 0 если не нужен отступ сверху
+            behavior: 'smooth' //плавный скролл
+        });
+    };
+    // получение ссылки на секцию
+    const addLink = (menu, e) => {
         const idElem = e.target.href.split('#')[1];
-        const topOffset = document.querySelector('.top-menu').offsetHeight;
         if (idElem) {
+            const links = menu.querySelectorAll('a[href^="#"]');
             links.forEach(item => {
                 let href = item.getAttribute('href').substring(1);
                 if (href === idElem) {
                     e.preventDefault();
-                    const scrollTarget = document.getElementById(href);
-                    const elementPosition = scrollTarget.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition - topOffset;
-                    window.scrollBy({
-                        top: offsetPosition, // 0 если не нужен отступ сверху
-                        behavior: 'smooth' //плавный скролл
-                    });
+                    goLink(href);
                 }
             });
         }
@@ -29,16 +34,15 @@ const scrollToLink = () => {
         if (e.target.closest('.popup-links')) {
             popMenu.style.display = 'none';
             const menu = document.querySelector('.popup-links');
-            linkGo(menu, e);
+            addLink(menu, e);
         }
 
         if (e.target.closest('.main-links')) {
-            console.log('e.target: ', e.target);
             if (e.target === topMenu || e.target.matches('.scroll')) {
                 return;
             } else {
                 const menu = document.querySelector('.main-links');
-                linkGo(menu, e);
+                addLink(menu, e);
             }
         }
     });

@@ -1,30 +1,22 @@
 'use strict'
 
-import animate from './animate';
 const scrollCursor = () => {
     const toTop = document.getElementById('totop'),
         wrapToTop = toTop.parentNode,
-        firstSection = document.querySelector('section');
+        firstSection = document.querySelector('section'),
+        topBtn = document.querySelector('.fa-arrow-up');
 
     wrapToTop.setAttribute('hidden', 'true');
 
-    const trackToTop = () => {
-        toTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            const docScrollPos = document.documentElement.scrollTop;
-            animate({
-                duration: 500,
-                timing: (timeFraction) => {
-                    return timeFraction;
-                },
-                draw: (progress) => {
-                    const docPos = docScrollPos * (1 - progress);
-                    if (docPos >= 0) {
-                        document.documentElement.scrollTo(0, docPos);
-                    }
-                },
-            });
-
+    const goTop = () => {
+        document.addEventListener('click', (e) => {
+            if (e.target === topBtn) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' //плавный скролл
+                });
+            }
         });
     };
 
@@ -32,11 +24,10 @@ const scrollCursor = () => {
         const firstSectionPos = firstSection.getBoundingClientRect().bottom;
         if (firstSectionPos < 50) {
             wrapToTop.removeAttribute('hidden');
-            trackToTop();
+            goTop();
         } else {
             wrapToTop.setAttribute('hidden', 'true');
         }
     });
-
 };
 export default scrollCursor;

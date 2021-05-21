@@ -12,6 +12,7 @@ import calc from './modules/calculator';
 import burgerMenu from './modules/burgerMenu';
 import popupMenu from './modules/popupMenu';
 import scrollCursor from './modules/scrollCursor';
+import scrollToLink from './modules/scrollLink';
 
 // п.2 выпадающее меню
 dropMenu();
@@ -37,3 +38,5 @@ burgerMenu();
 popupMenu();
 // стрелка при скролле
 scrollCursor();
+// плавный скролл
+scrollToLink();

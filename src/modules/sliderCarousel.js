@@ -10,7 +10,7 @@ const sliderCarousel = () => {
     }
     const slides = document.querySelectorAll('.services-slide_content');
 
-    let slidesToShow = 6;
+    let slidesToShow = 5;
     let widthSlide = Math.floor(100 / slidesToShow);
     let maxPosition;
     // установка css
@@ -33,7 +33,6 @@ const sliderCarousel = () => {
             box-sizing: border-box;
             padding-left: 0;
             padding-right: 0;
-
         }
         .services-slide_content {
             flex: 0 0 ${widthSlide}%;
@@ -45,7 +44,7 @@ const sliderCarousel = () => {
         .services-wrapper .slider-arrow {
             border: none;
             background: transparent;
-            top: 41%
+            top: 45%
         }
         .services-wrapper .slider-arrow.prev {
             left: 0;
@@ -64,14 +63,10 @@ const sliderCarousel = () => {
         placeName: 'services'
     });
     servicesBtns.init();
-    const prevBtn = document.querySelector('.services-prev');
-    const nextBtn = document.querySelector('.services-next');
-
+    // const prevBtn = document.querySelector('.services-prev');
+    // const nextBtn = document.querySelector('.services-next');
+    // брекпойнты для отображения слайдов
     const responsive = [{
-            breakpoint: 1400,
-            slidesToShow: 5,
-        },
-        {
             breakpoint: 1200,
             slidesToShow: 4,
         },
@@ -125,8 +120,9 @@ const sliderCarousel = () => {
         window.addEventListener('resize', checkResponse);
     };
     responseInit();
-
+    // прокрутка слайдов
     let position = 0;
+
     const prevSlider = () => {
         if (position > 0) {
             --position;
@@ -146,6 +142,7 @@ const sliderCarousel = () => {
             servicesSlider.style.transform = 'translateX(0%)';
         }
     };
+
     document.addEventListener('click', (e) => {
         if (e.target.closest('.services-prev')) {
             prevSlider();

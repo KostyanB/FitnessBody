@@ -14,15 +14,15 @@ import popupMenu from './modules/popupMenu';
 import scrollCursor from './modules/scrollCursor';
 import scrollToLink from './modules/scrollLink';
 
-// п.2 выпадающее меню
+// выпадающее меню
 dropMenu();
-// п.3, 4, 6 popups
+// popups
 showPopupForm();
-// п.7 слайдер на главной
+// слайдер на главной
 sliderHead();
-// п.10 фотогалерея
+// фотогалерея
 photoSlider();
-// п.9 карусель
+// карусель
 sliderCarousel();
 // маски инпутов
 maskInput();

@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/KostyanB/GLOlearn#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "D": "^1.0.0",
+    "formdata-polyfill": "^4.0.3",
     "webpack-cli": "^4.7.0"
   },
   "devDependencies": {

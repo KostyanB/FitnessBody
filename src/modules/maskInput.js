@@ -1,5 +1,6 @@
-'use strict'
+'use strict';
 import maskPhone from './maskPhone';
+
 const maskInput = () => {
     document.body.addEventListener('input', (e) => {
 

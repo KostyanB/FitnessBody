@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const burgerMenu = () => {
     const topMenu = document.querySelector('.top-menu'),

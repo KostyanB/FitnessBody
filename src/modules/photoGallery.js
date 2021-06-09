@@ -1,6 +1,7 @@
-'use strict'
+'use strict';
 import AddArrow from './addArrow';
 import AddDots from './addDots';
+
 const photoSlider = () => {
     const gallerySlider = document.querySelector('.gallery-slider'),
         photoSlides = document.querySelectorAll('.photo-slide');

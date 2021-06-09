@@ -1,5 +1,5 @@
-'use strict'
-import animate from './animate';
+'use strict';
+import animate from './rafAnimate';
 
 const showPopupForm = (thanksForm) => {
     const openFreeVisit = document.querySelector('.open-free'),
@@ -12,19 +12,15 @@ const showPopupForm = (thanksForm) => {
         closeCallbackForm = formWrapper[1].childNodes[1].childNodes[1];
 
     const animForm = (wrapper) => {
-        const stopPosPopup = document.documentElement.clientHeight * 0.2;
         animate({
             duration: 300,
             timing: (timeFraction) => {
                 return timeFraction;
             },
             draw: (progress) => {
-                const popupPos = wrapper.getBoundingClientRect().top,
-                    startPosPopup = -100,
-                    posMenu = startPosPopup + (20 - startPosPopup) * progress;
-                if (popupPos < stopPosPopup) {
+                const startPosPopup = -100,
+                    posMenu = startPosPopup + (0 - startPosPopup) * progress;
                     wrapper.style.transform = `translateY(${posMenu}%)`;
-                }
             },
         });
     };
@@ -48,11 +44,13 @@ const showPopupForm = (thanksForm) => {
         } else if (e.target === closefreeVisitForm || e.target.closest('.overlay')) {
             freeVisitForm.style.display = 'none';
         }
+
         if (e.target === openCallback) {
             controlForm(callbackForm, formWrapper[1]);
         } else if (e.target === closeCallbackForm || e.target.closest('.overlay')) {
             callbackForm.style.display = 'none';
         }
+
         if (fixedGift) {
             const giftBtn = fixedGift.childNodes[1],
                 closeGiftForm = formWrapper[4].childNodes[1].childNodes[1],
@@ -63,16 +61,16 @@ const showPopupForm = (thanksForm) => {
                 controlForm(giftForm, formWrapper[4]);
             } else if (e.target === closeGiftForm || giftCloseBtn || e.target.closest('.overlay')) {
                 giftForm.style.display = 'none';
-                //giftBtn.style.display = 'inline';
             }
         }
-        if (thanksForm) {
+
+         if (thanksForm) {
             const closeThanksForm = thanksForm.querySelectorAll('.close-form'),
                 thanksCloseBtn = document.querySelector('.thanks-close');
             if (e.target === closeThanksForm || thanksCloseBtn || e.target.closest('.overlay')) {
                 thanksForm.style.display = 'none';
             }
-        }
+         }
     });
 };
 export default showPopupForm;

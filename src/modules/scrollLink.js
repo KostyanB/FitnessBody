@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const scrollToLink = () => {
     const popMenu = document.querySelector('.popup-menu'),
@@ -49,6 +49,5 @@ const scrollToLink = () => {
             }
         }
     });
-
 };
 export default scrollToLink;

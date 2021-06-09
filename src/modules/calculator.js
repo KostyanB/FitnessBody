@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 const calc = () => {
     const cardOrder = document.getElementById('card_order');
     if (cardOrder.className !== 'calc-card-order') {
@@ -27,7 +28,6 @@ const calc = () => {
                 priceTotal.textContent = Math.round(price * sale);
             }
         };
-        //calculator();
 
         const setTarif = (sale = 1) => {
             cards.forEach(item => {

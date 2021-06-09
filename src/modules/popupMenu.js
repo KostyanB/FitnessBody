@@ -1,6 +1,5 @@
-'use strict'
-
-import animate from './animate';
+'use strict';
+import animate from './rafAnimate';
 
 const popupMenu = () => {
     const popMenu = document.querySelector('.popup-menu'),
@@ -13,12 +12,9 @@ const popupMenu = () => {
                 return timeFraction;
             },
             draw: (progress) => {
-                const posPopup = popMenu.getBoundingClientRect().top,
-                    startPosPopup = -100;
-                let posMenu = startPosPopup - startPosPopup * progress;
-                if (posPopup < 0) {
-                    popMenu.style.transform = `translateY(${posMenu}%)`;
-                }
+                const startPosPopup = -100,
+                    posMenu = startPosPopup - startPosPopup * progress;
+                popMenu.style.transform = `translateY(${posMenu}%)`;
             },
         });
     };

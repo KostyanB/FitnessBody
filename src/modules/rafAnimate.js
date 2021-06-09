@@ -1,5 +1,6 @@
-'use strict'
-const animate = ({duration, draw, timing}) => {
+'use strict';
+
+const animate = ({ duration, draw, timing }) => {
 
     const start = performance.now();
 

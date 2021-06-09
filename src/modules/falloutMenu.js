@@ -1,12 +1,14 @@
-'use strict'
+'use strict';
 
-import animate from './animate';
+import animate from './rafAnimate';
+
 const dropMenu = () => {
     const clubSelector = document.getElementById('club-selector'),
         falloutActivator = document.getElementById('fallout-activator');
 
     const menuAnim = () => {
         const stopPosMenu = falloutActivator.getBoundingClientRect().bottom + 15;
+        console.log('stopPosMenu: ', stopPosMenu);
         animate({
             duration: 500,
             timing: (timeFraction) => {

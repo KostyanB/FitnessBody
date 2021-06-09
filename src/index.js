@@ -1,13 +1,13 @@
-'use strict'
+'use strict';
 
 import dropMenu from './modules/falloutMenu';
-import showPopupForm from './modules/showForm';
+import showPopupForm from './modules/showPopup';
 import sliderHead from './modules/headSlider';
 import photoSlider from './modules/photoGallery';
 import sliderCarousel from './modules/sliderCarousel';
 import maskInput from './modules/maskInput';
 import validInput from './modules/validInput';
-import checkInputs from './modules/checkInputs';
+import { checkInputs } from './modules/checkInputs';
 import calc from './modules/calculator';
 import burgerMenu from './modules/burgerMenu';
 import popupMenu from './modules/popupMenu';

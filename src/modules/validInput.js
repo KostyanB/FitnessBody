@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const validInput = () => {
     const correctBase = {

@@ -14,7 +14,7 @@ const scrollCursor = () => {
                 e.preventDefault();
                 window.scrollTo({
                     top: 0,
-                    behavior: 'smooth' //плавный скролл
+                    behavior: 'smooth',
                 });
             }
         });

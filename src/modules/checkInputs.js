@@ -1,51 +1,51 @@
-'use strict'
+'use strict';
 import sendForm from './sendForm';
+import { showMessage, statusMessage } from './showMessage';
 
-const checkInputs = () => {
-    const statusMessage = document.createElement('div');
-    statusMessage.style.cssText = 'font-size: 1.2em';
-    const unCheckMessage = 'Вы не отметили согласие',
+export let targetForm; //форма из которой отправлена заявка
+
+// проверка инпутов
+export const checkInputs = () => {
+    const checkBoxes = document.querySelectorAll('[type="checkbox"]'),
+        formPromo = document.querySelector('.form-promo'),
+        unCheckMessage = 'Вы не отметили согласие',
         unCheckClubMessage = 'Вы не выбрали клуб';
-    const checkBoxes = document.querySelectorAll('[type="checkbox"]');
+
     checkBoxes.forEach(item => item.removeAttribute('required'));
-    const formPromo = document.querySelector('.form-promo');
+
     if(formPromo) {
         formPromo.removeAttribute('required');
     }
 
-    const checkForm = (targetForm) => {
-        const inputs = targetForm.querySelectorAll('input');
-        const showMessage = (message) => {
-            statusMessage.style.color = '#fe193f';
-            statusMessage.textContent = message;
-            setTimeout(() => statusMessage.textContent = '', 3000);
-        };
+    const checkForm = () => {
 
         if (targetForm.closest('footer')) {
             const clubCheck = targetForm.querySelectorAll('[type="radio"]');
+            // проверка выбран ли клуб в футере
             if (!clubCheck[0].checked && !clubCheck[1].checked) {
-                showMessage(unCheckClubMessage);
-            } else if (clubCheck[0].checked || clubCheck[1].checked){
-                sendForm(targetForm, inputs, statusMessage);
+                showMessage('#fe193f', unCheckClubMessage);
+            } else if (clubCheck[0].checked || clubCheck[1].checked) {
+                sendForm();
             }
         } else {
             const targetCheck = targetForm.querySelector('[type="checkbox"]');
             targetCheck.removeAttribute('required');
+            // проверка выбран ли чекбокс перс. данных
             if (!targetCheck.checked) {
-                showMessage(unCheckMessage);
+                showMessage('#fe193f', unCheckMessage);
             } else {
-                sendForm(targetForm, inputs, statusMessage);
+                sendForm();
             }
         }
     };
 
     document.body.addEventListener('submit', (e) => {
         e.preventDefault();
-        const targetForm = e.target;
-        if (targetForm) {
+        const target = e.target;
+        if (target) {
+            targetForm = target;
             targetForm.appendChild(statusMessage);
-            checkForm(targetForm);
+            checkForm();
         }
     });
 };
-export default checkInputs;

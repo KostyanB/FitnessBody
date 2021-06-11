@@ -3,4 +3,9 @@
 .eslintrc
 /.vscode/
 /plugins/
-/config/
+/.firebase/
+
+package-lock.json
+# /css/
+# /fonts/
+# /images/

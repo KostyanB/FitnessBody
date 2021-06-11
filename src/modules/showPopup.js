@@ -4,12 +4,11 @@ import animate from './rafAnimate';
 const showPopupForm = (thanksForm) => {
     const openFreeVisit = document.querySelector('.open-free'),
         openCallback = document.querySelector('.open-callback'),
-        fixedGift = document.querySelector('.fixed-gift'),
+        giftBtn = document.querySelector('.fixed-gift img'),
         freeVisitForm = document.getElementById('free_visit_form'),
         callbackForm = document.getElementById('callback_form'),
         formWrapper = document.querySelectorAll('.form-wrapper'),
-        closefreeVisitForm = formWrapper[2].childNodes[1].childNodes[1],
-        closeCallbackForm = formWrapper[1].childNodes[1].childNodes[1];
+        closeFormIcons = document.querySelectorAll('.close_icon');
 
     const animForm = (wrapper) => {
         animate({
@@ -41,25 +40,23 @@ const showPopupForm = (thanksForm) => {
         if (e.target === openFreeVisit) {
             e.preventDefault();
             controlForm(freeVisitForm, formWrapper[2]);
-        } else if (e.target === closefreeVisitForm || e.target.closest('.overlay')) {
+        } else if (e.target === closeFormIcons[1] || e.target.closest('.overlay')) {
             freeVisitForm.style.display = 'none';
         }
 
         if (e.target === openCallback) {
             controlForm(callbackForm, formWrapper[1]);
-        } else if (e.target === closeCallbackForm || e.target.closest('.overlay')) {
+        } else if (e.target === closeFormIcons[0] || e.target.closest('.overlay')) {
             callbackForm.style.display = 'none';
         }
 
-        if (fixedGift) {
-            const giftBtn = fixedGift.childNodes[1],
-                closeGiftForm = formWrapper[4].childNodes[1].childNodes[1],
-                giftForm = document.getElementById('gift'),
+        if (giftBtn) {
+            const  giftForm = document.getElementById('gift'),
                 giftCloseBtn = document.querySelector('.gift-close');
             if (e.target === giftBtn) {
                 giftBtn.style.display = 'none';
                 controlForm(giftForm, formWrapper[4]);
-            } else if (e.target === closeGiftForm || giftCloseBtn || e.target.closest('.overlay')) {
+            } else if (e.target === closeFormIcons[3] || giftCloseBtn || e.target.closest('.overlay')) {
                 giftForm.style.display = 'none';
             }
         }
@@ -67,7 +64,7 @@ const showPopupForm = (thanksForm) => {
          if (thanksForm) {
             const closeThanksForm = thanksForm.querySelectorAll('.close-form'),
                 thanksCloseBtn = document.querySelector('.thanks-close');
-            if (e.target === closeThanksForm || thanksCloseBtn || e.target.closest('.overlay')) {
+            if (e.target === closeFormIcons[2] || thanksCloseBtn || e.target.closest('.overlay')) {
                 thanksForm.style.display = 'none';
             }
          }

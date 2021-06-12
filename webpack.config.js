@@ -4,6 +4,8 @@ const {
 	CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const mode = process.env.NODE_ENV;
 const isDev = mode === 'development';
@@ -44,10 +46,13 @@ module.exports = {
 		}),
         new CopyPlugin({
 			patterns: [
-                { from: "images", to: "images" },
-                { from: "fonts", to: "fonts" },
-                { from: "css", to: "css" },
+                { from: "./src/images", to: "images" },
+                { from: "./src/fonts", to: "fonts" },
+                // { from: "css", to: "css" },
             ],
+        }),
+        new MiniCssExtractPlugin({
+            filename: "style.css",
         }),
     ],
     module: {
@@ -61,8 +66,24 @@ module.exports = {
                     },
                 },
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader?url=false']
             }
         ]
+    },
+    optimization: {
+        minimizer: [
+            //   `...`,
+            new CssMinimizerPlugin({
+            test: /\.css$/i,
+            }),
+        ],
+    },
+    performance: {
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
     },
     devServer: {
 		//contentBase: './build',

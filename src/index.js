@@ -1,5 +1,6 @@
 'use strict';
-
+import './css/style.css';
+import './css/font-awesome.min.css';
 import dropMenu from './modules/falloutMenu';
 import showPopupForm from './modules/showPopup';
 import sliderHead from './modules/headSlider';

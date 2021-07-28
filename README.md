@@ -1,7 +1,5 @@
 # "FitnessBody" сайт сети фитнесс-клубов
 
-Дипломный проект курса "JavaScript" GLO Academy.
-
 ## О приложениии
 
 Демо-версия на [FitnessBody](https://fitnessbody-1bf35.web.app).
@@ -23,8 +21,6 @@
 ***
 Eng
 ## "FitnessBody" site of fitness clubs network
-
-Diplom project of course "JavaScript" GLO Academy.
 
 ## About App
 
